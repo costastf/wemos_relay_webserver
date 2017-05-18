@@ -1,0 +1,6 @@
+{
+  "network_ssid": "NETWORK_SSID",
+  "network_password": "NETWORK_PASSWORD",
+  "network_reset_timeout": "SECONDS",
+  "exception_reset_timeout": "SECONDS"
+}
