@@ -73,13 +73,13 @@ Required tools:
   port is ttyUSB0 (check with dmesg after connecting to see what is assigned)
 
     esptool.py --port /dev/ttyUSB0 erase_flash
-    esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 MICROPYTHON_FIRMARE_FOR_ESP8266+uhttpd.bin
+    esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 MICROPYTHON_FIRMWARE_FOR_ESP8266+uhttpd.bin
 
   I have had some d1 boards having trouble flashing with the above with
   garbage on the serial and the led staying on. On those boards this command
   works.
 
-    esptool.py --port /dev/ttyUSB0 write_flash -fm dio -fs 32m 0 MICROPYTHON_FIRMARE_FOR_ESP8266+uhttpd.bin
+    esptool.py --port /dev/ttyUSB0 write_flash -fm dio -fs 32m 0 MICROPYTHON_FIRMWARE_FOR_ESP8266+uhttpd.bin
 
 
 # Loading the project

@@ -22,9 +22,12 @@ class RelayHandler(object):
     def __init__(self, relay_object):
         self.relay = relay_object
 
+    def _get_state(self):
+        state = True if self.relay.state else False
+        return {'state': state}
+
     def get(self, api_request):
-        return {'state': self.relay.state,
-                'status': self.relay.status}
+        return self._get_state()
 
     def post(self, api_request):
         try:
@@ -35,8 +38,8 @@ class RelayHandler(object):
             if state == 'NoState':
                 raise ValueError(api_request)
             self.relay.activate() if state else self.relay.deactivate()
-            result = {'result': 'success'}
+            result = self._get_state()
         except Exception as e:
-            result = {'result': 'failure',
+            result = {'state': 'unknown',
                       'exception': e}
         return result
