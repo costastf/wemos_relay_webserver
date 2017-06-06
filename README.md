@@ -114,3 +114,14 @@ Required tools:
 
    The above code will turn the relay on and off for a thousand
     times with a second of delay in between.
+
+# Integrating with [Home Assistant](https://home-assistant.io/)
+
+ In order to integrate with home assistant you need to add an entry for a
+ RESTfull switch like below:
+
+    - platform: rest
+      resource: "http://STATIC_IP_SUPPLIED_BY_ROUTER/api/relay"
+      name: "NAME OF THE SWITCH FOR THE UI"
+      body_on: '{"state": true}'
+      body_off: '{"state": false}'

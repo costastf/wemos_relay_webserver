@@ -60,4 +60,4 @@ Performed on an ubuntu 16.04
     cp ./build/firmware-combined.bin ../../esp8266-`date +%Y%m%d`-v1.8.7-uhttpd.bin
 
     # so finally now you should have a esp8266-WHATEVERDATE-v1.8.7-uhttpd.bin
-     under the initially created "uhttp_freezing" directory 
+    # under the initially created "uhttp_freezing" directory 
