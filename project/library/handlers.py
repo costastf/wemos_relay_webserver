@@ -27,6 +27,7 @@ class RelayHandler(object):
         return {'state': state}
 
     def get(self, api_request):
+        _ = api_request
         return self._get_state()
 
     def post(self, api_request):

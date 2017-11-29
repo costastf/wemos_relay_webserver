@@ -35,5 +35,6 @@ def main():
         time.sleep(exception_timeout)
         machine.reset()
 
+
 if __name__ == '__main__':
     main()
