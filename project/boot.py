@@ -32,6 +32,7 @@ def network_setup(configuration):
     password = configuration.get('network_password')
     network_reset_timeout = configuration.get('network_reset_timeout')
     wifi = network.WLAN(network.STA_IF)
+    access_point = network.WLAN(network.AP_IF)
     wifi.active(True)
     wifi.connect(ssid, password)
     seconds = 0
@@ -50,6 +51,8 @@ def network_setup(configuration):
               'Netmask :{}'.format(netmask),
               'Gateway :{}'.format(gateway),
               'DNS :{}'.format(dns))
+    print('Disabling access point interface')
+    access_point.active(False)
     print('\n'.join(report))
 
 
