@@ -43,7 +43,7 @@ def network_setup(configuration):
         print('.')
         if seconds == network_reset_timeout:
             print(('No network for {} seconds, '
-                   'reseting...').format(network_reset_timeout))
+                   'resetting...').format(network_reset_timeout))
             machine.reset()
     ip, netmask, gateway, dns = wifi.ifconfig()
     report = ('Network connected',
