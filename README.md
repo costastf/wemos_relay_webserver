@@ -109,7 +109,7 @@ Required tools:
 
     for time in `seq 1000`
         do
-        curl -H "Content-Type: application/json" -X POST -d '{"token":"<YOUR_TOKEN>","state":true}' http://YOURBOASTATIC_IP_SUPPLIED_BY_ROUTERRDIP/api/relay
+        curl -H "Content-Type: application/json" -X POST -d '{"token":"<YOUR_TOKEN>","state":true}' http://STATIC_IP_SUPPLIED_BY_ROUTER/api/relay
         sleep 1
         curl -H "Content-Type: application/json" -X POST -d '{"token":"<YOUR_TOKEN>","state":false}' http://STATIC_IP_SUPPLIED_BY_ROUTER/api/relay
         sleep 1
