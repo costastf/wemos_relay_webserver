@@ -2,5 +2,6 @@
   "network_ssid": "NETWORK_SSID",
   "network_password": "NETWORK_PASSWORD",
   "network_reset_timeout": "SECONDS",
+  "http_authorization_token": "RANDOM_STRING",
   "exception_reset_timeout": "SECONDS"
 }

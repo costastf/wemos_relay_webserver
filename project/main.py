@@ -26,7 +26,8 @@ def main():
         relay = Relay()
         exception_timeout = configuration.get('exception_reset_timeout')
         api_handler = http_api_handler.Handler([(['relay'],
-                                                 RelayHandler(relay))])
+            RelayHandler(relay, configuration.get('http_authorization_token')))]
+        )
         server = uhttpd.Server([('/api', api_handler)])
         server.run()
     except Exception as e:

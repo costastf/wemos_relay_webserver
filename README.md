@@ -43,8 +43,16 @@ Images in png format and a fritzing project can be found under [schematics](sche
 
 # Configuration
 
- Rename configuration_sample.json to configuration.json and edit accordingly.
-  Everything else should just work out of the box.
+Rename configuration_sample.json to configuration.json and edit accordingly.
+ Everything else should just work out of the box.
+
+# Security
+
+Please refrain from joining this wemos d1 on a unsecure wireless network or either you will probably end up being a victim of cyber crime.
+ Probably you want to assign this wemos d1 on a seperate wireless network by making use of seperate SSIDs, VLANs and advanced firewall rules.
+
+Furthermore this project has some basic security measures already built in, for instance by using a simple (but yet effective) token mechanism in the HTTP payload.
+
 
 # Custom micropython required
 
@@ -101,19 +109,22 @@ Required tools:
 
     for time in `seq 1000`
         do
-        curl -H "Content-Type: application/json" -X POST -d '{"state":true}' http://YOURBOARDIP/api/relay
+        curl -H "Content-Type: application/json" -X POST -d '{"token":"<YOUR_TOKEN>","state":true}' http://STATIC_IP_SUPPLIED_BY_ROUTER/api/relay
         sleep 1
-        curl -H "Content-Type: application/json" -X POST -d '{"state":false}' http://YOURBOARDIP/api/relay
+        curl -H "Content-Type: application/json" -X POST -d '{"token":"<YOUR_TOKEN>","state":false}' http://STATIC_IP_SUPPLIED_BY_ROUTER/api/relay
         sleep 1
         done
 
-   You can find YOURBOADIP by checking the serial console output where the ip
+   You can find STATIC_IP_SUPPLIED_BY_ROUTER by checking the serial console output where the ip
     will be printed with
 
     screen /dev/ttyUSB0 115200
 
    The above code will turn the relay on and off for a thousand
     times with a second of delay in between.
+
+   You also have the possibility to just give a pulse signal on the relay switch. This can become quite handy when you just want to close a circuit (i.e. using it for an automatic garage door opener) and simulate a button press.
+    In the JSON payload, use state: "pulse" and you're all set. The relay will turn on, pauses for 1 second and finally turns off.
 
 # Integrating with [Home Assistant](https://home-assistant.io/)
 

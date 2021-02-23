@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from machine import Pin
+import time
 
 
 class Relay(object):
@@ -42,3 +43,8 @@ class Relay(object):
 
     def deactivate(self):
         self.state = False
+
+    def pulse(self, timeout=1):
+        self.activate()
+        time.sleep(float(timeout))
+        self.deactivate()

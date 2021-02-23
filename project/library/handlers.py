@@ -19,8 +19,9 @@ import ujson
 
 
 class RelayHandler(object):
-    def __init__(self, relay_object):
+    def __init__(self, relay_object, http_token):
         self.relay = relay_object
+        self.http_token = http_token
 
     def _get_state(self):
         state = True if self.relay.state else False
@@ -36,9 +37,17 @@ class RelayHandler(object):
             body = http.get('body').decode('utf-8')
             response = ujson.loads(body)
             state = response.get('state', 'NoState')
+            response_token = response.get('token', 'NoToken')
             if state == 'NoState':
                 raise ValueError(api_request)
-            self.relay.activate() if state else self.relay.deactivate()
+            if response_token == 'NoToken' or self.http_token != response_token:
+                raise ValueError("Invalid token supplied : '{}'".format(response_token))
+            options = {
+                True: self.relay.activate,
+                False: self.relay.deactivate,
+                'pulse': self.relay.pulse
+            }
+            options[state]()
             result = self._get_state()
         except Exception as e:
             result = {'state': 'unknown',
